@@ -1,15 +1,13 @@
 const { Users } = require("../models");
-const { db } = require("../models/users");
 
 const usersController = {
-  // the functions will go in here as methods
   // GET ALL users
   getAllUsers(req, res) {
     Users.find({})
       .then((dbUsersData) => res.json(dbUsersData))
       .catch((err) => {
         console.log(err);
-        res.status(400).json(err);
+        res.sendStatus(400);
       });
   },
 
@@ -26,7 +24,7 @@ const usersController = {
       })
       .catch((err) => {
         console.log(err);
-        res.status(400).json(err);
+        res.sendStatus(400);
       });
   },
 

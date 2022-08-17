@@ -1,15 +1,16 @@
 const { Schema, model } = require("mongoose");
-const { stringify } = require("uuid");
+//const { stringify } = require("uuid");
 
+const usersSchema = new Schema ({
 username: {
-    type: string,
+    type: String,
     unique
     required
     trimmed
 }
 
 email: {
-    type: string,
+    type: String,
     required
     unique
     must match valid email address (look up mongoose validating system)
@@ -22,9 +23,10 @@ thoughts: {
 friends: {
     array [] of _id values referencing user model (self-reference)
 }
+});
 
 // create Users model using users schema
-const Users = model('users', usersSchema);
+const Users = model('Users', usersSchema);
 
 //export users model
 module.exports = Users;

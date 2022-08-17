@@ -1,5 +1,6 @@
 const Users = require("./users");
+//const { db } = require("../models/users");
 
 //
 
-module.exports = { Users };
+module.exports = { users };
