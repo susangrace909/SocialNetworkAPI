@@ -1,32 +1,50 @@
 const { Schema, model } = require("mongoose");
 //const { stringify } = require("uuid");
 
-const usersSchema = new Schema ({
-username: {
-    type: String,
-    unique
-    required
-    trimmed
-}
+const usersSchema = new Schema(
+  {
+    username: {
+      type: String,
+      unique: true,
+      required: true,
+      trim: true,
+    },
 
-email: {
-    type: String,
-    required
-    unique
-    must match valid email address (look up mongoose validating system)
-}
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, "Email address not valid!"],
+    },
 
-thoughts: {
-    array [] of _id values referencing thought model
-}
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Thought",
+      },
+    ],
 
-friends: {
-    array [] of _id values referencing user model (self-reference)
-}
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
+);
+
+usersSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
 });
 
 // create Users model using users schema
-const Users = model('Users', usersSchema);
+const Users = model("Users", usersSchema);
 
 //export users model
 module.exports = Users;

@@ -3,11 +3,12 @@ const { Users } = require("../models");
 const usersController = {
   // GET ALL users
   getAllUsers(req, res) {
-    Users.find({})
+    Users.find()
+      .select("-__v")
       .then((dbUsersData) => res.json(dbUsersData))
       .catch((err) => {
         console.log(err);
-        res.sendStatus(400);
+        return res.sendStatus(400);
       });
   },
 
@@ -20,7 +21,7 @@ const usersController = {
           res.status(404).json({ message: "No users found with this id!" });
           return;
         }
-        res.json(dbUsersData);
+        return res.json(dbUsersData);
       })
       .catch((err) => {
         console.log(err);

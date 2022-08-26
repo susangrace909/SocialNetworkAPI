@@ -3,4 +3,6 @@ const Users = require("./users");
 
 //
 
-module.exports = { users };
+module.exports = {
+  Users,
+};
