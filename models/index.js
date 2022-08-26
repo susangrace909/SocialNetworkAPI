@@ -1,8 +1,14 @@
+// import users
 const Users = require("./users");
-//const { db } = require("../models/users");
+
+// import thoughts
+const Thoughts = require(".thoughts");
+
+//
 
 //
 
 module.exports = {
   Users,
+  Thoughts,
 };
