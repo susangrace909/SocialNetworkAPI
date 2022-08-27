@@ -1,7 +1,7 @@
 // import models
 const { Thoughts, Users } = require("../models");
 
-// add and remove thoughts
+// add thought
 const thoughtsController = {
   // add thought to user
   addThought({ params, body }, res) {

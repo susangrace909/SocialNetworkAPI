@@ -37,6 +37,13 @@ const UsersSchema = new Schema(
     },
     id: false,
   }
+
+  reactions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Reactions'
+    }
+  ]
 );
 
 //friend count
