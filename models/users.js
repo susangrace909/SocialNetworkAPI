@@ -24,23 +24,23 @@ const UsersSchema = new Schema(
     thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: "thoughts",
+        ref: "Thoughts",
       },
     ],
 
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "users",
+        ref: "Users",
       },
     ],
   },
   {
     toJSON: {
       virtuals: true,
-    },
-    id: false,
-  },
+      getters: true,
+    }
+  }
   {
     reactions: [
       {
@@ -50,6 +50,11 @@ const UsersSchema = new Schema(
     ],
   }
 );
+
+//thought count
+UsersSchema.virtual('thoughtCount').get(function() {
+  return this.thoughts.reduce((total, thoughts) => total + thoughts.replies.length +1, 0;);
+});
 
 //friend count
 UsersSchema.virtual("friendCount").get(function () {

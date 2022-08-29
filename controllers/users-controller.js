@@ -20,7 +20,12 @@ const usersController = {
   // GET INDIVIDUAL users
   getUsersById({ params }, res) {
     Users.findOne({ _id: params.id })
-      .then((dbUsersData) => {
+      .populate({
+        path: 'reactions',
+        select: '-__v'
+      })
+      .select('-__v')
+    .then((dbUsersData) => {
         //if no users found, send 404
         if (!dbUsersData) {
           res.status(404).json({ message: "No users found with this id!" });
@@ -30,7 +35,7 @@ const usersController = {
       })
       .catch((err) => {
         console.log(err);
-        res.sendStatus(400);
+        res.sendStatus(400).json(err);
       });
   },
 
