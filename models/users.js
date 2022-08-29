@@ -3,6 +3,10 @@ const { Schema, model } = require("mongoose");
 
 const UsersSchema = new Schema(
   {
+    userId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
     username: {
       type: String,
       unique: true,
@@ -36,18 +40,19 @@ const UsersSchema = new Schema(
       virtuals: true,
     },
     id: false,
+  },
+  {
+    reactions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Reactions",
+      },
+    ],
   }
-
-  reactions: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Reactions'
-    }
-  ]
 );
 
 //friend count
-usersSchema.virtual("friendCount").get(function () {
+UsersSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 

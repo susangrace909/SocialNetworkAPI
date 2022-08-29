@@ -2,10 +2,10 @@
 const Users = require("./users");
 
 // import thoughts
-const Thoughts = require(".thoughts");
+const Thoughts = require("./thoughts");
 
 //import reactions
-const Reactions = require(".reactions");
+const Reactions = require("./reactions");
 
 //
 

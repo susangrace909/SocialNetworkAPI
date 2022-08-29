@@ -3,8 +3,13 @@ const { Users } = require("../models");
 const usersController = {
   // GET ALL users
   getAllUsers(req, res) {
-    Users.find()
-      .select("-__v")
+    Users.find({})
+    .populate({
+      path: 'reactions',
+      select("-__v")
+    })
+      .select('-__v')
+      .sort({ _id: -1 })
       .then((dbUsersData) => res.json(dbUsersData))
       .catch((err) => {
         console.log(err);
