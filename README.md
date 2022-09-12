@@ -12,8 +12,8 @@
 ## Repository Link
 
 - Repository can be found at: <br />
-  [GitHub](https://github.com/susangrace909/EmployeeTracker.git) <br />
+  [GitHub](https://github.com/susangrace909/SocialNetworkAPI.git) <br />
 
 ## Video of FUnctionality:
 
-![Video of Functionality](Screencastify.webm)
+![Video of Functionality](https://drive.google.com/drive/folders/1NPlfwmF7J6-rOOaJNI36wOXxVqcyyFWE?usp=sharing)
